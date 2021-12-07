@@ -8,7 +8,7 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(template_name='logout.html'), name='logout'),
     path('generar', views.generar, name='generar'),
     path('historial', views.historial, name='historial'),
-    path('pdf/<str:data>/', views.pdf, name='pdf' ),
+    path('pdf/<data>/<datos>', views.pdf, name='pdf'),
     path('ver/', views.ver, name='ver'),
 ]
     

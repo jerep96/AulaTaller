@@ -39,6 +39,7 @@
                         <th scope="col">Apellido</th>
                         <th scope="col">Curso</th>
                         <th scope="col">Sede</th>
+                        <th scope="col">Certificado</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -49,14 +50,19 @@
                             <td>{{ dato.Apellido }}</td>
                             <td>{{ dato.Curso }}</td>
                             <td>{{ dato.Sede }}</td>
+                            <td><a type="button" href="{% url 'pdf' data=dato datos=data %}" class="btn text-white" style="background-color: #3C5575;">Generar</a></td>
                           </tr>
                       {%  endfor %}
                     </tbody>
                   </table>
             </div>
-            <div class="card-footer text-end">
-              <a  type="button" href="{% url 'pdf' data=data.id %}" class="btn text-white" style="background-color: #3C5575;">Generar</a>
-            </div>
+{#            <div class="card-footer text-end">#}
+{#                {% if data %}#}
+{#                    <a type="button" href="{% url 'pdf' data=data %}" class="btn text-white" style="background-color: #3C5575;">Generar</a>#}
+{#                {% else %}#}
+{#                    <a type="button" href="{% url 'pdf' %}" class="btn text-white" style="background-color: #3C5575;">Generar</a>#}
+{#                {%  endif %}#}
+{#            </div>#}
           </div>
           <p><a href="../static/docs/aulaTaller_Original.xlsx">Descargar Formato</a></p>
         </div>

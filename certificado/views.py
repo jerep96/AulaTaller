@@ -1,4 +1,7 @@
+import json
 import os
+import subprocess
+import webbrowser
 from pathlib import Path
 from django.shortcuts import redirect, render, HttpResponse
 from django.contrib.auth.models import User
@@ -29,10 +32,12 @@ def generar(request):
     return render(request, 'generar.html', {'form': form})
 
 
-def pdf(request,data):
-    data = DataFile.objects.all()
-    context = {'data':data}
+def pdf(request, data, datos):
     generate(data)
+    webbrowser.open_new("./Certificados_Aula_taller.pdf")
+    datos = datos.replace("'", '"')
+    datos = json.loads(datos)
+    context = {'data': datos}
     return render(request, 'generar.html', context)
 
 

@@ -1,0 +1,5 @@
+/gunicorn.log
+/db.sqlite3
+/certificado/migrations/
+/certificado/static/docs/*
+/venv/
