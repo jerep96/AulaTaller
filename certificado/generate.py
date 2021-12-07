@@ -5,20 +5,13 @@ from reportlab.lib.colors import HexColor
 
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
-def generate(nombre, Sede, dni, carrera,carga_horaria,dia,mes,anio):
+def generate(data):
+    
     pdfmetrics.registerFont(TTFont('Vera', 'Vera.ttf'))
     pdfmetrics.registerFont(TTFont('VeraBd', 'VeraBd.ttf'))
     pdfmetrics.registerFont(TTFont('VeraIt', 'VeraIt.ttf'))
     pdfmetrics.registerFont(TTFont('VeraBI', 'VeraBI.ttf'))
 
-    '''nombre = "Palacios Toconas Omar Jeremias"
-    Sede = "UFLO"
-    dni = "39.443.824"
-    carrera = "Tecnicatura Superior en Desarrollo de Software"
-    carga_horaria = "350"
-    dia = "25"
-    mes = "Noviembre"
-    anio = "2021"'''
     w, h = A4
     x = h - 640
     y = 40

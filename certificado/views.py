@@ -4,6 +4,8 @@ from django.shortcuts import redirect, render, HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
+from .models import *
+
 from .forms import *
 
 from .leer_excel import main
@@ -27,17 +29,11 @@ def generar(request):
     return render(request, 'generar.html', {'form': form})
 
 
-def pdf(request):
-    nombre = "Palacios Toconas Omar Jeremias"
-    Sede = "UFLO"
-    dni = "39.443.824"
-    carrera = "Tecnicatura Superior en Desarrollo de Software"
-    carga_horaria = "350"
-    dia = "25"
-    mes = "Noviembre"
-    anio = "2021"
-    generate(nombre, Sede, dni, carrera, carga_horaria, dia, mes, anio)
-    return render(request, 'generar.html')
+def pdf(request,data):
+    data = DataFile.objects.all()
+    context = {'data':data}
+    generate(data)
+    return render(request, 'generar.html', context)
 
 
 def subir(request):
@@ -54,5 +50,7 @@ def historial(request):
 
 
 def ver(request):
-    archivo = Upload.objects.all().values()
-    return HttpResponse(archivo)
+    #archivo = Upload.objects.all().values()
+    datos = DataFile.objects.all().values()
+    context = {'data':datos}
+    return HttpResponse(context)

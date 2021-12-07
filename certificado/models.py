@@ -44,3 +44,5 @@ class DataFile (models.Model):
     firmaPuestoD = models.TextField(null=True, blank=True)
     sede = models.TextField(null=True, blank=True)
     
+    def __str__(self):
+        return f'{self.nombre}: {self.nombre}'
