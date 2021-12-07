@@ -21,7 +21,7 @@ SEDE = (
 class Upload(models.Model):
 
     timestamp = models.DateTimeField(default=timezone.now)
-    archivo = models.FileField(upload_to='static', null=True, blank=True)
+    archivo = models.FileField(upload_to='', null=True, blank=True)
     sede = models.CharField(default='Carhue', max_length=50, choices=SEDE, null=True, blank=True)
 
 

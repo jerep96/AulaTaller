@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import *
 
 from .leer_excel import main
+from .generate import generate
 
 @login_required
 def index(request):
@@ -18,10 +19,22 @@ def generar(request):
     if request.method == 'POST':
         form = UploadForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            main(request.FILES)
+            form.save() 
+            #main(request.FILES)
             print(form)
     return render(request, 'generar.html', {'form':form})
+
+def pdf(request):
+    nombre = "Palacios Toconas Omar Jeremias"
+    Sede = "UFLO"
+    dni = "39.443.824"
+    carrera = "Tecnicatura Superior en Desarrollo de Software"
+    carga_horaria = "350"
+    dia = "25"
+    mes = "Noviembre"
+    anio = "2021"
+    generate(nombre, Sede, dni, carrera,carga_horaria,dia,mes,anio)
+    return render(request, 'generar.html')
 
 def subir(request):
 
