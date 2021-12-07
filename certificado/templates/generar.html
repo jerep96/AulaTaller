@@ -31,40 +31,28 @@
                       <button class="btn text-white" style="background-color: #3C5575;" data-bs-toggle="modal" data-bs-target="#exampleModal">Importar</button>
             </div>
             <div class="card-body">
-                        <table class="table">
-                            <thead>
-                              <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Apellido</th>   
-                                <th scope="col">Curso</th>
-                                <th scope="col">Sede</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>Martina</td>
-                                <td>Conte</td>
-                                <td>Asistente Contador</td>
-                                <td>Trenque Lauquen </td>
-                              </tr>
-                              <tr>
-                                <th scope="row">2</th>
-                                <td>Martina</td>
-                                <td>Conte</td>
-                                <td>Asistente Contador</td>
-                                <td>Trenque Lauquen </td>   
-                              </tr>
-                              <tr>
-                                <th scope="row">3</th>
-                                <td>Martina</td>
-                                <td>Conte</td>
-                                <td>Asistente Contador</td>
-                                <td>Trenque Lauquen</td>
-                              </tr>
-                            </tbody>
-                          </table>
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Curso</th>
+                        <th scope="col">Sede</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                     {% for dato in data %}
+                          <tr>
+                            <th scope="row">{{ dato.row }}</th>
+                            <td>{{ dato.Nombre }}</td>
+                            <td>{{ dato.Apellido }}</td>
+                            <td>{{ dato.Curso }}</td>
+                            <td>{{ dato.Sede }}</td>
+                          </tr>
+                      {%  endfor %}
+                    </tbody>
+                  </table>
             </div>
             <div class="card-footer text-end">
               <a  type="button" href="{% url 'pdf' %}" class="btn text-white" style="background-color: #3C5575;">Generar</a>

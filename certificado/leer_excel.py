@@ -2,8 +2,10 @@ import sqlite3
 from sqlite3 import Error
 import xlrd
 from xlrd import sheet
+from openpyxl import load_workbook
 
-#database connection
+
+# database connection
 def sql_connection():
     try:
         con = sqlite3.connect('db.sqlite3')
@@ -12,45 +14,48 @@ def sql_connection():
     except Error:
         print(Error)
 
+
 def sql_insert(con, array_test):
     cursorObj = con.cursor()
-    for value in array_test:  
-        sql = 'INSERT INTO certificado_datafile ("nombre","apellido","dni","sede","carrera","horas","dia","mes","anio","firmaNameI","firmaPuestoI","firmaNameD","firmaPuestoD") VALUES ("%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s")'\
-            % (value['Nombre'],value['Apellido'],value['DNI'],value['Sede'],value['Curso'],value['Horas'],value['Dia'],\
-               value['Mes'],value['Anio'],value['Nombre Iz'],value['Puesto Iz'],value['Nombre D'],value['Puesto D'])
-        #print(sql)
+    for value in array_test:
+        sql = 'INSERT INTO certificado_datafile ("nombre","apellido","dni","sede","carrera","horas","dia","mes","anio","firmaNameI","firmaPuestoI","firmaNameD","firmaPuestoD") VALUES ("%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s")' \
+              % (value['Nombre'], value['Apellido'], value['DNI'], value['Sede'], value['Curso'], value['Horas'],
+                 value['Dia'], \
+                 value['Mes'], value['Anio'], value['Nombre Iz'], value['Puesto Iz'], value['Nombre D'],
+                 value['Puesto D'])
         cursorObj.execute(sql)
     con.commit()
 
-#filepath = "./aulaTaller.xlsx"
 
-def main(filepath):
+# filepath = "./aulaTaller.xlsx"
 
-    openFile  = xlrd.open_workbook(filepath)
-    sheet = openFile.sheet_by_name("Hoja1")
-    array_test = []
-    for i in range (1, sheet.nrows):
+def main(file):
+    filepath = 'certificado/static/docs/' + str(file.archivo)
+    wb = load_workbook(filename=filepath)
+    ws = wb.active
+    array = []
+    ws.delete_rows(1)
+    fila = 1
+    for row in ws.values:
         valores = {
-            "Nombre": sheet.cell_value(i,0),
-            "Apellido": sheet.cell_value(i,1),
-            "DNI": sheet.cell_value(i,2),
-            "Sede": sheet.cell_value(i,3),
-            "Curso": sheet.cell_value(i,4),
-            "Horas": sheet.cell_value(i,5),
-            "Dia": sheet.cell_value(i,6),
-            "Mes": sheet.cell_value(i,7),
-            "Anio": sheet.cell_value(i,8),
-            "Nombre Iz": sheet.cell_value(i,9),
-            "Puesto Iz": sheet.cell_value(i,10),
-            "Nombre D": sheet.cell_value(i,11),
-            "Puesto D": sheet.cell_value(i,12)
+            "row": fila,
+            "Nombre": row[0],
+            "Apellido": row[1],
+            "DNI": row[2],
+            "Sede": row[3],
+            "Curso": row[4],
+            "Horas": row[5],
+            "Dia": row[6],
+            "Mes": row[7],
+            "Anio": row[8],
+            "Nombre Iz": row[9],
+            "Puesto Iz": row[10],
+            "Nombre D": row[11],
+            "Puesto D": row[12],
         }
-        array_test.append(valores)
-    
-
+        array.append(valores)
+        fila += 1
     con = sql_connection()
-    sql_insert(con, array_test)
+    sql_insert(con, array)
 
-#print(sheet.nrows)
-#print(sheet.ncols)
-#print(array_test)
+    return array

@@ -28,7 +28,22 @@
                     <div class="col-8 offset-2">
                         <form class="form" method="post">
                             {% csrf_token %}
-                            {{ form.as_p }}
+                            <div class="row">
+                                <div class="col-4 offset-2">
+                                    <p>Nombre de usuario: </p>
+                                </div>
+                                <div class="col-4">
+                                    {{ form.username }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 offset-2">
+                                    <p>Contraseña: </p>
+                                </div>
+                                <div class="col-4">
+                                    {{ form.password }}
+                                </div>
+                            </div>
                             <div class="d-grid gap-2">
                                 <button type="submit"  class="btn  text-white" style="background-color: #3C5575;">Iniciar sesion</button>
                             </div>

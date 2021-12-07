@@ -71,4 +71,4 @@ def generate(nombre, Sede, dni, carrera,carga_horaria,dia,mes,anio):
     c.drawString(610, 70, "Secretaria Regional de Vinculación.")
     c.drawString(670, 60, Sede)
 
-    c.save() 
+    c.save()
