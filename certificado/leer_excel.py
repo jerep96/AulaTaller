@@ -50,8 +50,10 @@ def main(file):
             "Anio": row[8],
             "Nombre Iz": row[9],
             "Puesto Iz": row[10],
-            "Nombre D": row[11],
-            "Puesto D": row[12],
+            "Abajo Iz": row[11],
+            "Nombre D": row[12],
+            "Puesto D": row[13],
+            "Abajo D": row[14],
         }
         array.append(valores)
         fila += 1

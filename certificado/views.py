@@ -47,10 +47,44 @@ def subir(request):
 
 @login_required
 def historial(request):
-    archivo = Upload.objects.all()
+    user = request.user.username
+    if user == 'Carhue':
+        archivo = Upload.objects.all()
+    '''elif user == 'Trenque':
+        sede = 'Trenque Lauquen'
+        archivo = Upload.objects.get(sede=sede)
+    elif user == 'Olavarria':
+        sede = 'Olavarría'
+        archivo = Upload.objects.get(sede=sede)
+    elif user == 'General':
+        sede = 'General Roca'
+        archivo = Upload.objects.get(sede=sede)
+    elif user == 'GPico':
+        sede = 'G. Pico'
+        archivo = Upload.objects.get(sede=sede)
+    elif user == 'Plata':
+        sede = 'Mar del Plata'
+        archivo = Upload.objects.get(sede=sede)
+    elif user == 'Daireaux':
+        sede = 'Daireaux'
+        archivo = Upload.objects.get(sede=sede)
+    elif user == 'Coronel':
+        sede = 'Coronel Suarez'
+        archivo = Upload.objects.get(sede=sede)
+    elif user == 'Pehuajo':
+        sede = 'Pehuajo'
+        archivo = Upload.objects.get(sede=sede)
+    elif user == 'Lomas':
+        sede = 'Tres Lomas'
+        archivo = Upload.objects.get(sede=sede)
+    elif user == 'Regina':
+        sede = 'Villa Regina'   
+        archivo = Upload.objects.get(sede=sede)'''
+
+                         
     BASE_DIR = Path(__file__).resolve().parent.parent
     base = os.path.join(BASE_DIR)
-    context = {'archivos': archivo, 'base': base}
+    context = {'archivos': archivo, 'base': base, 'traeu': user}
     return render(request, 'historial.html', context)
 
 

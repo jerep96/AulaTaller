@@ -5,6 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
+              {% if request.user.username == 'Carhue' %}
                 <select class="form-select mt-4" aria-label="Default select example">
                     <option selected>Selecione una Sede</option>
                     <option value="1">Carhue</option>
@@ -19,9 +20,11 @@
                     <option value="3">Tres Lomas</option>
                     <option value="3">Villa Regina</option>
                   </select>
+              {% endif %}
             </div>
             <div class="col-12 mt-4">
                 <ol class="list-group list-group">
+                  {{ traeu }}
                   {% for archivo in archivos %}
                     <li class="list-group-item d-flex justify-content-between align-items-start"> 
                       <div class="ms-2 me-auto">

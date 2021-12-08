@@ -59,15 +59,15 @@ def generate(data):
 
     # Firmas - texto Izquierda
     c.setFont('Vera', 8)
-    c.drawString(290, 80, "Lic. Natalia Arias")
-    c.drawString(250, 70, "Secretaria Regional de Vinculación.")
-    c.drawString(310, 60, data['Sede'])
+    c.drawString(290, 80, data['Nombre Iz'])
+    c.drawString(250, 70, data['Puesto Iz'])
+    c.drawString(310, 60, data['Abajo Iz'])
 
     # Firmas - texto Derecha
     c.setFont('Vera', 8)
-    c.drawString(650, 80, "Lic. Natalia Arias")
-    c.drawString(610, 70, "Secretaria Regional de Vinculación.")
-    c.drawString(670, 60, data['Sede'])
+    c.drawString(650, 80, data['Nombre D'])
+    c.drawString(610, 70, data['Puesto D'])
+    c.drawString(670, 60, data['Abajo D'])
 
     c.save()
 

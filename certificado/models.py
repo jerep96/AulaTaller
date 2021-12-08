@@ -40,8 +40,10 @@ class DataFile (models.Model):
     horas = models.TextField(null=True, blank=True)
     firmaNameI = models.TextField(null=True, blank=True)
     firmaPuestoI = models.TextField(null=True, blank=True)
+    abajoI = models.TextField(null=True, blank=True)
     firmaNameD = models.TextField(null=True, blank=True)
     firmaPuestoD = models.TextField(null=True, blank=True)
+    abajoD = models.TextField(null=True, blank=True)
     sede = models.TextField(null=True, blank=True)
     
     def __str__(self):
