@@ -9,6 +9,7 @@ urlpatterns = [
     path('generar', views.generar, name='generar'),
     path('historial', views.historial, name='historial'),
     path('pdf/<data>/<datos>', views.pdf, name='pdf'),
+    path('allPdf/<datos>', views.allPdf, name='allPdf'),
     path('ver/', views.ver, name='ver'),
 ]
     

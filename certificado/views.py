@@ -1,6 +1,6 @@
 import json
 import os
-import subprocess
+from PyPDF2 import PdfFileMerger
 import webbrowser
 from pathlib import Path
 from django.shortcuts import redirect, render, HttpResponse
@@ -28,13 +28,32 @@ def generar(request):
         if form.is_valid():
             file = form.save()
             data = main(file)
+            nombreSalida = 'Certificados.pdf'
+            fusionador = PdfFileMerger()
+            i = 1
+            for dato in data:
+                name = 'Certificados_Aula_taller' + str(i) + '.pdf'
+                generate(dato, name)
+                fusionador.append(open('./' + name, 'rb'))
+                i += 1
+            with open(nombreSalida, 'wb') as salida:
+                fusionador.write(salida)
             return render(request, 'generar.html', {'form': form, 'data': data})
     return render(request, 'generar.html', {'form': form})
 
 
 def pdf(request, data, datos):
-    generate(data)
-    webbrowser.open_new("./Certificados_Aula_taller.pdf")
+    name = 'Certificados_Aula_taller.pdf'
+    generate(data, name)
+    webbrowser.open_new("./" + name)
+    datos = datos.replace("'", '"')
+    datos = json.loads(datos)
+    context = {'data': datos}
+    return render(request, 'generar.html', context)
+
+
+def allPdf(request, datos):
+    webbrowser.open_new("./Certificados.pdf")
     datos = datos.replace("'", '"')
     datos = json.loads(datos)
     context = {'data': datos}

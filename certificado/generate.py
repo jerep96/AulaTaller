@@ -10,9 +10,12 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 
 
-def generate(data):
-    data = data.replace("'", '"')
-    data = json.loads(data)
+def generate(data, name):
+    try:
+        data = data.replace("'", '"')
+        data = json.loads(data)
+    except:
+        pass
     pdfmetrics.registerFont(TTFont('Vera', 'Vera.ttf'))
     pdfmetrics.registerFont(TTFont('VeraBd', 'VeraBd.ttf'))
     pdfmetrics.registerFont(TTFont('VeraIt', 'VeraIt.ttf'))
@@ -21,7 +24,7 @@ def generate(data):
     w, h = A4
     x = h - 640
     y = 40
-    c = canvas.Canvas("Certificados_Aula_taller.pdf", pagesize=A4)
+    c = canvas.Canvas(name, pagesize=A4)
     c.setPageSize(landscape(A4))
     c.drawImage('certificado/static/img/uflo.jpg', 20, 40, width=155, height=530)
     c.drawImage('certificado/static/img/title_cuadro.png', 190, 40, width=620, height=530)
@@ -71,3 +74,4 @@ def generate(data):
 
     c.save()
 
+    return c
