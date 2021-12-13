@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.forms import Form
+
 from .models import Upload
 
 
@@ -27,3 +29,7 @@ class UploadForm(forms.ModelForm):
     class Meta:
         model = Upload
         fields = ['archivo', 'sede']
+
+
+class HistoryForm(forms.Form):
+    sede = forms.ChoiceField(choices=SEDE, widget=forms.Select(attrs={'class':'form-select mt-4'}))

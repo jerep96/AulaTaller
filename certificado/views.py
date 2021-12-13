@@ -65,43 +65,52 @@ def subir(request):
 @login_required
 def historial(request):
     user = request.user.username
-    #if user == 'Carhue':
-        #archivo = Upload.objects.all()
-    '''elif user == 'Trenque':
+    form= HistoryForm()
+    archivo = Upload.objects.all()
+    if user == 'Carhue':
+        archivo = Upload.objects.all()
+    elif user == 'Trenque':
         sede = 'Trenque Lauquen'
-        archivo = Upload.objects.get(sede=sede)
+        archivo = Upload.objects.filter(sede=sede).values()
     elif user == 'Olavarria':
         sede = 'Olavarría'
-        archivo = Upload.objects.get(sede=sede)
+        archivo = Upload.objects.filter(sede=sede).values()
     elif user == 'General':
         sede = 'General Roca'
-        archivo = Upload.objects.get(sede=sede)
+        archivo = Upload.objects.filter(sede=sede).values()
     elif user == 'GPico':
         sede = 'G. Pico'
-        archivo = Upload.objects.get(sede=sede)
+        archivo = Upload.objects.filter(sede=sede).values()
     elif user == 'Plata':
         sede = 'Mar del Plata'
-        archivo = Upload.objects.get(sede=sede)
+        archivo = Upload.objects.filter(sede=sede).values()
     elif user == 'Daireaux':
         sede = 'Daireaux'
-        archivo = Upload.objects.get(sede=sede)
+        archivo = Upload.objects.filter(sede=sede).values()
     elif user == 'Coronel':
         sede = 'Coronel Suarez'
-        archivo = Upload.objects.get(sede=sede)
+        archivo = Upload.objects.filter(sede=sede).values()
     elif user == 'Pehuajo':
         sede = 'Pehuajo'
-        archivo = Upload.objects.get(sede=sede)
+        archivo = Upload.objects.filter(sede=sede).values()
     elif user == 'Lomas':
         sede = 'Tres Lomas'
-        archivo = Upload.objects.get(sede=sede)
+        archivo = Upload.objects.filter(sede=sede).values()
     elif user == 'Regina':
         sede = 'Villa Regina'   
-        archivo = Upload.objects.get(sede=sede)'''
-
-    archivo = Upload.objects.all()                  
+        archivo = Upload.objects.filter(sede=sede).values()
+    if request.method == 'POST':
+        form = HistoryForm(request.POST)
+        if form.is_valid():
+            res = request.POST
+            if res['sede'] == 'Carhue':
+                archivo = Upload.objects.all()
+            else:
+                archivo = Upload.objects.filter(sede=res['sede']).values()
+    # archivo = Upload.objects.all()
     BASE_DIR = Path(__file__).resolve().parent.parent
     base = os.path.join(BASE_DIR)
-    context = {'archivos': archivo, 'base': base, 'traeu': user}
+    context = {'archivos': archivo, 'base': base, 'traeu': user, 'form': form}
     return render(request, 'historial.html', context)
 
 
