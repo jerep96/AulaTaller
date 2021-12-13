@@ -67,8 +67,8 @@ def subir(request):
 @login_required
 def historial(request):
     user = request.user.username
-    if user == 'Carhue':
-        archivo = Upload.objects.all()
+    #if user == 'Carhue':
+        #archivo = Upload.objects.all()
     '''elif user == 'Trenque':
         sede = 'Trenque Lauquen'
         archivo = Upload.objects.get(sede=sede)
@@ -100,7 +100,7 @@ def historial(request):
         sede = 'Villa Regina'   
         archivo = Upload.objects.get(sede=sede)'''
 
-                         
+    archivo = Upload.objects.all()                  
     BASE_DIR = Path(__file__).resolve().parent.parent
     base = os.path.join(BASE_DIR)
     context = {'archivos': archivo, 'base': base, 'traeu': user}
