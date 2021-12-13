@@ -45,19 +45,17 @@ def generar(request):
 def pdf(request, data, datos):
     name = 'Certificados_Aula_taller.pdf'
     generate(data, name)
-    webbrowser.open_new("./" + name)
-    datos = datos.replace("'", '"')
-    datos = json.loads(datos)
-    context = {'data': datos}
-    return render(request, 'generar.html', context)
+    with open("./" + name, 'rb') as fh:
+        response = HttpResponse(fh.read(), content_type="application/pdf")
+        response['Content-Disposition'] = 'inline; filename=' + name
+        return response
 
 
 def allPdf(request, datos):
-    webbrowser.open_new("./Certificados.pdf")
-    datos = datos.replace("'", '"')
-    datos = json.loads(datos)
-    context = {'data': datos}
-    return render(request, 'generar.html', context)
+    with open("./Certificados.pdf", 'rb') as fh:
+        response = HttpResponse(fh.read(), content_type="application/pdf")
+        response['Content-Disposition'] = 'inline; filename=Certificados.pdf'
+        return response
 
 
 def subir(request):

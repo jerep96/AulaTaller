@@ -50,7 +50,7 @@
                             <td>{{ dato.Apellido }}</td>
                             <td>{{ dato.Curso }}</td>
                             <td>{{ dato.Sede }}</td>
-                            <td><a type="button" href="{% url 'pdf' data=dato datos=data %}" class="btn text-white" style="background-color: #3C5575;">Generar</a></td>
+                            <td><a type="button" href="{% url 'pdf' data=dato datos=data %}" class="btn text-white" style="background-color: #3C5575;" target="_blank">Generar</a></td>
                           </tr>
                       {%  endfor %}
                     </tbody>
@@ -58,9 +58,9 @@
             </div>
             <div class="card-footer text-end">
                 {% if data %}
-                    <a type="button" href="{% url 'allPdf' datos=data %}" class="btn text-white" style="background-color: #3C5575;">Generar Todo</a>
+                    <a type="button" href="{% url 'allPdf' datos=data %}" class="btn text-white" target="_blank" style="background-color: #3C5575;">Generar Todo</a>
                 {% else %}
-                    <a type="button" href="#" class="btn text-white disabled" style="background-color: #3C5575;">Generar Todo</a>
+                    <a type="button" href="#" class="btn text-white disabled" style="background-color: #3C5575;" target="_blank">Generar Todo</a>
                 {%  endif %}
             </div>
           </div>
