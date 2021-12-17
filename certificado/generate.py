@@ -6,6 +6,8 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4, landscape
 from reportlab.lib.units import inch
 from reportlab.lib.colors import HexColor
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak
+from reportlab.lib.styles import ParagraphStyle
 
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
@@ -22,8 +24,13 @@ def generate(data, name):
     pdfmetrics.registerFont(TTFont('VeraIt', 'VeraIt.ttf'))
     pdfmetrics.registerFont(TTFont('VeraBI', 'VeraBI.ttf'))'''
     pdfmetrics.registerFont(TTFont('DejaVuSans','DejaVuSans.ttf'))
-
-
+    pdfmetrics.registerFont(TTFont('DejaVuSansBd','DejaVuSans-Bold.ttf'))
+    style = ParagraphStyle(
+        name='Normal',
+        fontName='DejaVuSans',
+        fontSize=8,
+    )
+    Paragraph('text', style, bulletText=None)
     w, h = A4
     x = h - 640
     y = 40
@@ -34,13 +41,16 @@ def generate(data, name):
     # c.setFont('roboto', 16)
     c.setFont('DejaVuSans', 18)
     c.drawString(270, 450, "Por cuanto ___________________________________________,")
-    c.drawString(390, 450, data['Nombre'] + ' ' + data['Apellido'])
+    c.setFont('DejaVuSansBd', 18)
+    c.drawString(390, 450, str(data['Nombre']) + ' ' + str(data['Apellido']))
     c.setFont('DejaVuSans', 16)
     c.drawString(300, 410, "DNI. _______________, ha dado cumplimiento con los")
     c.drawString(350, 410, str(data['DNI']))
     c.drawString(340, 370, "requisitos de aprobación del curso de")
     c.drawString(240, 320, "________________________________________________________________")
-    c.drawString(340, 320, data['Curso'])
+    c.setFont('DejaVuSansBd', 20)
+    c.drawString(370, 320, str(data['Curso']))
+    c.setFont('DejaVuSans', 16)
     c.drawString(250, 280, "dictado por Aula Taller Capacitaciones con el aval académico de")
     c.drawString(250, 250, "la Universidad de Flores con una carga horaria de ___ horas reloj.")
     c.drawString(650, 250, str(data['Horas']))
@@ -65,15 +75,15 @@ def generate(data, name):
 
     # Firmas - texto Izquierda
     c.setFont('DejaVuSans', 8)
-    c.drawString(290, 80, data['Nombre Iz'])
-    c.drawString(270, 70, data['Puesto Iz'])
-    c.drawString(310, 60, data['Abajo Iz'])
+    c.drawString(270, 80, str(data['Nombre Iz']))
+    c.drawString(297, 70, str(data['Puesto Iz']))
+    c.drawString(265, 60, str(data['Abajo Iz']))
 
     # Firmas - texto Derecha
     c.setFont('DejaVuSans', 8)
-    c.drawString(650, 80, data['Nombre D'])
-    c.drawString(630, 70, data['Puesto D'])
-    c.drawString(670, 60, data['Abajo D'])
+    c.drawString(640, 80, str(data['Nombre D']))
+    c.drawString(655    , 70, str(data['Puesto D']))
+    c.drawString(630, 60, str(data['Abajo D']))
 
     c.save()
 
