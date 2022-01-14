@@ -42,7 +42,7 @@ def generate(data, name):
     c.setFont('DejaVuSans', 18)
     c.drawString(270, 450, "Por cuanto ___________________________________________,")
     c.setFont('DejaVuSansBd', 18)
-    c.drawString(390, 450, str(data['Nombre']) + ', ' + str(data['Apellido']))
+    c.drawString(390, 450, str(data['Apellido']) + ', ' + str(data['Nombre']))
     c.setFont('DejaVuSans', 16)
     c.drawString(300, 410, "DNI. _______________, ha dado cumplimiento con los")
     c.drawString(350, 410, str(data['DNI'])[0:2]+'.'+str(data['DNI'])[2:5]+'.'+str(data['DNI'])[5:8])
