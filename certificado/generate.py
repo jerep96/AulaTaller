@@ -63,27 +63,30 @@ def generate(data, name):
     c.drawString(625, 170, str(data['Anio']))
 
     # Firmas - Lineas
-    c.line(x + 30, 100, x + 200, 100)
-    c.line(x + 210, 100, x + 380, 100)
-    c.line(x + 390, 100, x + 560, 100)
+    c.line(x + 30, 80, x + 200, 80)
+    c.line(x + 210, 80, x + 380, 80)
+    c.line(x + 390, 80, x + 560, 80)
 
     # Firmas - texto Medio
     c.setFont('DejaVuSans', 8)
-    c.drawString(470, 80, "Lic. Natalia Arias")
-    c.drawString(430, 70, "Secretaria Regional de Vinculación.")
-    c.drawString(490, 60, "UFLO")
+    c.drawImage('certificado/static/img/NA2.png', 470, 82, width=110, height=70)
+    c.drawString(470, 70, "Lic. Natalia Arias")
+    c.drawString(430, 60, "Secretaria Regional de Vinculación.")
+    c.drawString(490, 50, "UFLO")
 
     # Firmas - texto Izquierda
     c.setFont('DejaVuSans', 8)
-    c.drawString(270, 80, str(data['Nombre Iz']))
-    c.drawString(297, 70, str(data['Puesto Iz']))
-    c.drawString(265, 60, str(data['Abajo Iz']))
+    c.drawImage('certificado/static/img/MASSEO2.png', 270, 82, width=110, height=70)
+    c.drawString(270, 70, str(data['Nombre Iz']))
+    c.drawString(297, 60, str(data['Puesto Iz']))
+    c.drawString(265, 50, str(data['Abajo Iz']))
 
     # Firmas - texto Derecha
     c.setFont('DejaVuSans', 8)
-    c.drawString(640, 80, str(data['Nombre D']))
-    c.drawString(655    , 70, str(data['Puesto D']))
-    c.drawString(630, 60, str(data['Abajo D']))
+    c.drawImage('certificado/static/img/C2.png', 640, 82, width=110, height=70)
+    c.drawString(640, 70, str(data['Nombre D']))
+    c.drawString(655, 60, str(data['Puesto D']))
+    c.drawString(630, 50, str(data['Abajo D']))
 
     c.save()
 
